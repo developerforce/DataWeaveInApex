@@ -24,3 +24,8 @@ See [`CsvToJsonConversionTest.cls`](https://github.com/developerforce/DataWeaveI
 ### Script error handling
 
 See [`ExceptionHandlingTest.cls`](https://github.com/developerforce/DataWeaveInApex/blob/main/force-app/main/default/classes/ExceptionHandlingTest.cls) for an example of handling an exception orginating from a DataWeave script execution
+
+
+### Object Processing
+
+See [`ObjectProcessingTest.cls`](https://github.com/developerforce/DataWeaveInApex/blob/main/force-app/main/default/classes/ObjectProcessingTest.cls) for an example of handling an exception orginating from a DataWeave script execution
