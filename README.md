@@ -15,3 +15,9 @@ Examples for working with DataWeave scripts from Apex ([currently in pilot](http
 
 See [`HelloWorldTest.cls`](https://github.com/developerforce/DataWeaveInApex/blob/main/force-app/main/default/classes/HelloWorldTest.cls) for a minimal version for calling a DataWeave script from Apex that only logs "Hello World".
 
+### CSV to JSON
+
+The following example is from the Dreamforce `21 [Develop Enterprise Applications with Apex](https://www.salesforce.com/plus/experience/Dreamforce_2021/series/Developer/episode/episode-3/) presentation and starts at the 15 minute mark.
+
+See [`CsvToJsonConversionTest.cls`](https://github.com/developerforce/DataWeaveInApex/blob/main/force-app/main/default/classes/CsvToJsonConversionTest.cls) for an example of transforming CSV data stored in a static resource to a JSON string.
+
