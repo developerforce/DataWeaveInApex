@@ -1,6 +1,7 @@
 @IsTest
 public with sharing class HelloWorldTest {
 
+    // Uses the ./src/dw/helloworld.dwl script to log a message
     @IsTest
     public static void helloWorld() {
         Dataweave.Script dwscript = DataWeave.Script.createScript('helloworld');
