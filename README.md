@@ -33,3 +33,7 @@ See [`ObjectProcessingTest.cls`](https://github.com/developerforce/DataWeaveInAp
 ### Multiple Inputs
 
 See [`MultipleInputsTest.cls`](https://github.com/developerforce/DataWeaveInApex/blob/main/force-app/main/default/classes/MultipleInputsTest.cls) for an example of handling multiple inputs to a single DataWeave Script.
+
+### Built in Functions
+
+See [`PluralizeTest.cls`](https://github.com/developerforce/DataWeaveInApex/blob/main/force-app/main/default/classes/PluralizeTest.cls) for an example of using DataWeave built in String functions

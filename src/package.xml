@@ -6,6 +6,7 @@
         <members>helloworld</members>
         <members>multipleInputs</members>
         <members>objectProcessing</members>
+        <members>pluralize</members>
         <name>DataWeaveResource</name>
     </types>
     <version>53.0</version>
