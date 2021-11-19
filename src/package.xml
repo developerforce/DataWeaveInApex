@@ -4,6 +4,7 @@
         <members>csvtojson</members>
         <members>error</members>
         <members>helloworld</members>
+        <members>multipleInputs</members>
         <members>objectProcessing</members>
         <name>DataWeaveResource</name>
     </types>

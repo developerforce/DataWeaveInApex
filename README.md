@@ -29,3 +29,7 @@ See [`ExceptionHandlingTest.cls`](https://github.com/developerforce/DataWeaveInA
 ### Object Processing
 
 See [`ObjectProcessingTest.cls`](https://github.com/developerforce/DataWeaveInApex/blob/main/force-app/main/default/classes/ObjectProcessingTest.cls) for an example of handling an exception orginating from a DataWeave script execution
+
+### Multiple Inputs
+
+See [`MultipleInputsTest.cls`](https://github.com/developerforce/DataWeaveInApex/blob/main/force-app/main/default/classes/MultipleInputsTest.cls) for an example of handling multiple inputs to a single DataWeave Script.
