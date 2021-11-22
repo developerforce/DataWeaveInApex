@@ -1,5 +1,7 @@
 # DataWeaveInApex
-Examples for working with DataWeave scripts from Apex ([currently in pilot](https://trailhead.salesforce.com/trailblazer-community/groups/0F94S000000kGtKSAU?tab=discussion))
+Examples for working with DataWeave scripts from Apex.
+
+This functionality is [currently in pilot](https://trailhead.salesforce.com/trailblazer-community/groups/0F94S000000kGtKSAU?tab=discussion). Please reach out to your Account Executive (AE) if you would like to be included in the pilot.
 
 
 ## Basic Setup
