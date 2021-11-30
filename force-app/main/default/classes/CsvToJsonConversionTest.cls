@@ -29,4 +29,24 @@ public with sharing class CsvToJsonConversionTest {
             System.assertNotEquals(null, c.LastName);
         }
     }
+
+    // Uses the ./src/dw/csvSeparatorTojson.dwl script to convert from a CSV with ; delimiters to JSON
+    @IsTest
+    public static void csvSeparatorToJson() {
+        // Note the use of the ; separator rather than ,
+        Map<String, Object> args = new Map<String, Object>{ 'records' => '1;2\na;b' };
+
+        string scriptName = 'csvSeparatorTojson';
+        dataweave.Script dwscript = DataWeave.Script.createScript(scriptName);
+        string scriptNameReported = dwscript.toString();
+        System.assertEquals(scriptName, scriptNameReported);
+
+        DataWeave.Result result = dwscript.execute(args);
+
+        string jsonResult = result.getValueAsString();
+        system.debug('JSON output '+ jsonResult );
+
+        System.assert(jsonResult.contains('"1": "a",'), 'Expected first record header and value.');
+        System.assert(jsonResult.contains('"2": "b"'), 'Expected first record header and second value');
+    }
 }

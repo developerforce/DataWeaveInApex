@@ -23,6 +23,10 @@ The following example is from the Dreamforce `21 [Develop Enterprise Application
 
 See [`CsvToJsonConversionTest.cls`](https://github.com/developerforce/DataWeaveInApex/blob/main/force-app/main/default/classes/CsvToJsonConversionTest.cls) for an example of transforming CSV data stored in a static resource to a JSON string.
 
+### CSV to JSON - alternative separator
+
+See the `csvSeparatorToJson()` method in [`CsvToJsonConversionTest.cls`](https://github.com/developerforce/DataWeaveInApex/blob/main/force-app/main/default/classes/CsvToJsonConversionTest.cls) for an example of transforming CSV data using `;` as the separator to a JSON string.
+
 ### Script error handling
 
 See [`ExceptionHandlingTest.cls`](https://github.com/developerforce/DataWeaveInApex/blob/main/force-app/main/default/classes/ExceptionHandlingTest.cls) for an example of handling an exception orginating from a DataWeave script execution
