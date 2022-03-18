@@ -1,7 +1,7 @@
 @IsTest
 public with sharing class PluralizeTest {
     
-    // Uses the ./src/dw/pluralize.dwl script to log a message
+    // Uses the ./src/dw/pluralize.dwl script to apply function: https://docs.mulesoft.com/dataweave/2.3/dw-strings-functions-pluralize
     @IsTest
     public static void pluralize() {
         Map<String, Object> inputs = new Map<String, Object>();
