@@ -27,6 +27,11 @@ public with sharing class CsvToJsonConversionTest {
         for(Contact c : contacts) {
             System.assertNotEquals(null, c.FirstName);
             System.assertNotEquals(null, c.LastName);
+            System.assertNotEquals(null, c.MailingStreet);
+            
+            if(c.FirstName=='Donette' && c.LastName=='Foller') {
+                System.assertEquals('34 Center St\r\n#42', c.MailingStreet);
+            }
         }
     }
 
