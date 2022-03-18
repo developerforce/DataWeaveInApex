@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Outgoing_Key__c</fullName>
+    <description>This field holds the string representation of the key you want this data assigned to in the OUTGOING json. For this dataweave script to result in a list of sObjects, this field MUST be the API name of a field on the associated type.</description>
+    <externalId>false</externalId>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <label>Outgoing Key</label>
+    <length>255</length>
+    <required>true</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

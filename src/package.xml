@@ -8,6 +8,7 @@
         <members>multipleInputs</members>
         <members>objectProcessing</members>
         <members>pluralize</members>
+        <members>json2sObjects</members>
         <name>DataWeaveResource</name>
     </types>
     <version>53.0</version>
