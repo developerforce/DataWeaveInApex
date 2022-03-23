@@ -66,8 +66,6 @@ public with sharing class DWJsonToSObjectsList {
     public List<sObject> translateToSObjects(String sObjectType) {
         // construct a Type object reflecting a List of the concrete sObject type specified
         Type dynamicListType = Type.forName('List<' + sObjectType + '>');
-        // Create a list of the dynamic type to hold our resulting records.
-        List<sObject> sObjects = (List<sObject>) dynamicListType.newInstance();
         // This line is a doozy, and the bulk of the work happens here.
         // translate is called to get the json string, and then the resulting json is
         // deserialized into a List<sObject> because this list was created
