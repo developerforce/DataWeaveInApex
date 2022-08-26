@@ -1,15 +1,14 @@
 # DataWeave In Apex
 Examples for working with DataWeave scripts from Apex.
 
-This functionality is [currently in pilot](https://trailhead.salesforce.com/trailblazer-community/groups/0F94S000000kGtKSAU?tab=discussion). Please reach out to your Account Executive (AE) if you would like to be included in the pilot.
+This functionality is [currently in Dev Preview](https://help.salesforce.com/s/articleView?id=release-notes.rn_apex_DataWeaveInApex_DevPreview.htm&type=5&release=240) in Winter '23. It can be selectively enabled in scratch orgs.
 
 
 ## Basic Setup
 
-1. Create a scratch org using a DevHub that has been activated for the DataWeave in Apex pilot
-2. Push the source to the scratch org
-3. Push the Metadata Source for the DataWeave scripts  
-`sfdx force:mdapi:deploy -d ./src --wait=-1`
+1. Create a scratch org with the "DataWeaveInApex" [scratch org feature](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_scratch_orgs_def_file_config_values.htm)
+2. Push the source to the scratch org - requires SFDX CLI [7.151.9+](https://github.com/forcedotcom/cli/blob/main/releasenotes/sfdx/README.md#71511-may-19-2022)
+
 
 ## Examples
 
@@ -34,7 +33,7 @@ See [`ExceptionHandlingTest.cls`](https://github.com/developerforce/DataWeaveInA
 
 ### Object Processing
 
-See [`ObjectProcessingTest.cls`](https://github.com/developerforce/DataWeaveInApex/blob/main/force-app/main/default/classes/ObjectProcessingTest.cls) for an example of handling an exception orginating from a DataWeave script execution
+See [`ObjectProcessingTest.cls`](https://github.com/developerforce/DataWeaveInApex/blob/main/force-app/main/default/classes/ObjectProcessingTest.cls) for examples of passing objects to and receiving objects from DataWeave scripts.
 
 ### Multiple Inputs
 
@@ -43,3 +42,11 @@ See [`MultipleInputsTest.cls`](https://github.com/developerforce/DataWeaveInApex
 ### Built in Functions
 
 See [`PluralizeTest.cls`](https://github.com/developerforce/DataWeaveInApex/blob/main/force-app/main/default/classes/PluralizeTest.cls) for an example of using DataWeave built in String functions
+
+### Dynamic JSON Mapping
+
+See [`DWJsonToSObjectsListTest.cls`](https://github.com/developerforce/DataWeaveInApex/blob/main/force-app/main/default/classes/DWJsonToSObjectsListTest.cls) for the example from TDX '22 of dynamic JSON mapping to sObjects
+
+### JSON DateTime formatting
+
+See [`JsonDateFormatTest.cls`](https://github.com/developerforce/DataWeaveInApex/blob/main/force-app/main/default/classes/JsonDateFormatTest.cls) for an example of custom DateTime formatting in JSON output.
