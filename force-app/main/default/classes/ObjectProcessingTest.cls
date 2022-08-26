@@ -13,11 +13,11 @@ public with sharing class ObjectProcessingTest {
         insert contacts;
     }
 
-    // Uses the ./src/dw/objectProcessing.dwl script to log a message
+    // Uses the /dw/objectProcessing.dwl script to log a message
     @IsTest
     public static void passSObjectsToDataWeave() {
         List<Contact> data = [SELECT FirstName, LastName FROM Contact ORDER BY LastName ASC LIMIT 5];
-        System.assert(!data.isEmpty(), 'Contacts required for input data');
+        Assert.isFalse(data.isEmpty(), 'Contacts required for input data');
 
         DataWeave.Script script = DataWeave.Script.createScript('objectProcessing');
         DataWeave.Result result = script.execute(new Map<String, Object>{ 'records' => data });
@@ -26,13 +26,13 @@ public with sharing class ObjectProcessingTest {
                
         System.debug(output);
 
-        System.assertEquals(339, output.length());
+        Assert.areEqual(339, output.length());
 
         output = output.normalizeSpace();
 
-        System.assert(output.contains('"lastName": "Doe"'));
-        System.assert(output.contains('"lastName": "Foe"'));
-        System.assert(output.contains('"lastName": "Goe"'));
+        Assert.isTrue(output.contains('"lastName": "Doe"'));
+        Assert.isTrue(output.contains('"lastName": "Foe"'));
+        Assert.isTrue(output.contains('"lastName": "Goe"'));
     }
 
     @IsTest
@@ -54,18 +54,34 @@ public with sharing class ObjectProcessingTest {
 
         System.debug(output);
 
-        System.assertEquals(298, output.length());
+        Assert.areEqual(298, output.length());
 
         output = output.normalizeSpace();
 
-        System.assert(output.contains('"lastName" : "Doe"'));
-        System.assert(output.contains('"lastName" : "Foe"'));
-        System.assert(output.contains('"lastName" : "Goe"'));
+        Assert.isTrue(output.contains('"lastName" : "Doe"'));
+        Assert.isTrue(output.contains('"lastName" : "Foe"'));
+        Assert.isTrue(output.contains('"lastName" : "Goe"'));
     }
 
     class UserData {
         public string firstName;
         public string lastName;
+    }
+
+    // Uses the /dw/csvToContacts.dwl script to convert the csv data to Contact sObjects
+    @IsTest
+    public static void sObjectsFromDataWeave() {
+        // CSV data for Contacts
+        String inputCsv = 'first_name,last_name,email\nCodey,"The Bear",codey@salesforce.com'; 
+        DataWeave.Script dwscript = DataWeave.Script.createScript('csvToContacts');
+        DataWeave.Result dwresult = dwscript.execute(new Map<String, Object>{'records' => inputCsv});
+        List<Contact> results = (List<Contact>)dwresult.getValue();
+
+        Assert.areEqual(1, results.size());
+        Contact codeyContact = results[0];
+        Assert.areEqual('Codey',codeyContact.FirstName);
+        Assert.areEqual('The Bear',codeyContact.LastName);
+        Assert.areEqual('codey@salesforce.com',codeyContact.Email);
     }
 
 }
