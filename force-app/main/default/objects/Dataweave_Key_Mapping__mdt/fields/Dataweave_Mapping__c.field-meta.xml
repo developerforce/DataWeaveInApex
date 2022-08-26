@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Dataweave_Mapping__c</fullName>
+    <description>Relationship Filed to the Datafield Mapping this record belongs to.</description>
+    <externalId>false</externalId>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <label>Dataweave Mapping</label>
+    <referenceTo>Dataweave_Mapping__mdt</referenceTo>
+    <relationshipLabel>Dataweave Key Mappings</relationshipLabel>
+    <relationshipName>Dataweave_Key_Mappings</relationshipName>
+    <required>true</required>
+    <type>MetadataRelationship</type>
+    <unique>false</unique>
+</CustomField>
