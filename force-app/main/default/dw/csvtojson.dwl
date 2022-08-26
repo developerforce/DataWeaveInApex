@@ -9,11 +9,11 @@ fun renameKey(key: Key) = key match {
     case "phone" -> "Phone"
     case "email" -> "Email"
     case "date" -> "DateofBirth"
-    case "address" -> "Address"
-    case "city" -> "City"
-    case "county" -> "Country"
-    case "state" -> "State"
-    case "zip" -> "Zip"
+    case "address" -> "MailingStreet"
+    case "city" -> "MailingCity"
+    case "county" -> "MailingCountry"
+    case "state" -> "MailingState"
+    case "zip" -> "MailingPostalCode"
     else -> (key)
 }
 --- 
