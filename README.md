@@ -6,7 +6,7 @@ This functionality is [currently in Dev Preview](https://help.salesforce.com/s/a
 
 ## Basic Setup
 
-1. Create a scratch org with the "DataWeaveInApex" [scratch org feature](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_scratch_orgs_def_file_config_values.htm)
+1. Create a scratch org with the "DataWeaveInApex" [scratch org feature](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_scratch_orgs_def_file_config_values.htm). See [/config/project-scratch-def.json](/config/project-scratch-def.json#L4) as an example
 2. Push the source to the scratch org - requires SFDX CLI [7.151.9+](https://github.com/forcedotcom/cli/blob/main/releasenotes/sfdx/README.md#71511-may-19-2022)
 
 
