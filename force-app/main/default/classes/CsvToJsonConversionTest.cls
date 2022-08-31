@@ -44,14 +44,47 @@ public with sharing class CsvToJsonConversionTest {
         string scriptName = 'csvSeparatorTojson';
         dataweave.Script dwscript = DataWeave.Script.createScript(scriptName);
         string scriptNameReported = dwscript.toString();
-        System.assertEquals(scriptName, scriptNameReported);
+        Assert.areEqual(scriptName, scriptNameReported);
 
         DataWeave.Result result = dwscript.execute(args);
 
         string jsonResult = result.getValueAsString();
         system.debug('JSON output '+ jsonResult );
 
-        System.assert(jsonResult.contains('"1": "a",'), 'Expected first record header and value.');
-        System.assert(jsonResult.contains('"2": "b"'), 'Expected first record header and second value');
+        Assert.isTrue(jsonResult.contains('"1": "a",'), 'Expected first record header and value.');
+        Assert.isTrue(jsonResult.contains('"2": "b"'), 'Expected first record header and second value');
+    }
+
+    // Uses the ./src/dw/csvToJsonBasic.dwl script to convert from a CSV to JSON with no extra conversion
+    @IsTest
+    public static void convertCsvToJsonBasic() {
+        string csvPayload = 'first_name,last_name,company,address\n' +
+            'Abel,Maclead,"Rousseaux, Michael Esq","6649 N Blue Gum St,\n' +
+            'New Orleans"';
+
+        string scriptName = 'csvToJsonBasic';
+        DataWeave.Script dwscript = DataWeave.Script.createScript(scriptName);
+
+        DataWeave.Result result = dwscript.execute(new Map<String, Object>{'payload' => csvPayload});
+
+        string jsonResult = result.getValueAsString();
+        Assert.areNotEqual(0, jsonResult.trim().length(), 'Expected to have JSON output from DW script');
+        System.debug(jsonResult);
+        /*[
+            {
+                "first_name": "Abel",
+                "last_name": "Maclead",
+                "company": "Rousseaux, Michael Esq",
+                "address": "6649 N Blue Gum St,\nNew Orleans"
+            }
+          ]*/
+
+        List<Object> jsonList = (List<Object>)JSON.deserializeUntyped(jsonResult);
+        Map<String, Object> jsonMap = (Map<String, Object>) (jsonList[0]);
+        Assert.areEqual('Abel', jsonMap.get('first_name'));
+        Assert.areEqual('Maclead', jsonMap.get('last_name'));
+        Assert.areEqual('Rousseaux, Michael Esq', jsonMap.get('company'));
+        Assert.areEqual('6649 N Blue Gum St,\nNew Orleans', jsonMap.get('address'));
+        
     }
 }
