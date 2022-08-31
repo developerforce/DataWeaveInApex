@@ -27,6 +27,10 @@ See [`CsvToJsonConversionTest.cls`](https://github.com/developerforce/DataWeaveI
 
 See the `csvSeparatorToJson()` method in [`CsvToJsonConversionTest.cls`](https://github.com/developerforce/DataWeaveInApex/blob/main/force-app/main/default/classes/CsvToJsonConversionTest.cls) for an example of transforming CSV data using `;` as the separator to a JSON string.
 
+### CSV to POTATO
+
+See the `convertCsvToObjects()` method in [`CsvToObjectTest.cls`](/force-app/main/default/classes/CsvToObjectTest.cls) for an example of transforming CSV data directly to an Apex POTATO (Plain Old Typed Apex Transient Object - Apex equivalent of a POJO)
+
 ### Script error handling
 
 See [`ExceptionHandlingTest.cls`](https://github.com/developerforce/DataWeaveInApex/blob/main/force-app/main/default/classes/ExceptionHandlingTest.cls) for an example of handling an exception orginating from a DataWeave script execution
