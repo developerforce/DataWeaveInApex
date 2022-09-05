@@ -55,3 +55,7 @@ See [`DWJsonToSObjectsListTest.cls`](https://github.com/developerforce/DataWeave
 ### JSON DateTime formatting
 
 See [`JsonDateFormatTest.cls`](https://github.com/developerforce/DataWeaveInApex/blob/main/force-app/main/default/classes/JsonDateFormatTest.cls) for an example of custom DateTime formatting in JSON output.
+
+### Apex Reserved Keywords
+
+See [`ReservedKeywordTest.cls`](/force-app/main/default/classes/ReservedKeywordTest.cls) for an example of handling [reserved Apex keywords](https://developer.salesforce.com/docs/atlas.en-us.apexref.meta/apexref/apex_reserved_words.htm)
