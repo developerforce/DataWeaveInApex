@@ -1,9 +1,10 @@
-[{
-    "name": "Apex",
-    "isSpecial": false
-},
-{
-    "name": "Turtles",
-    "isSpecial": true
-}
+[
+    {
+        "name": "Apex",
+        "isSpecial": false
+    },
+    {
+        "name": "Turtles",
+        "isSpecial": true
+    }
 ]
