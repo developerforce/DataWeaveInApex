@@ -30,4 +30,46 @@ public with sharing class CsvToObjectTest {
             }
         }
     }
+
+    // Uses the ./src/dw/csvToCustomObject.dwl script to convert from a large CSV static resource to objects
+    @IsTest
+    public static void convertLargeCsvToObjects() {
+        // Load CSV data as a blob from static resource
+        Blob data = [Select Body 
+            FROM 
+            StaticResource 
+            WHERE 
+            Name = 'contactsLarge' 
+            LIMIT 1].Body;
+
+        System.debug(LoggingLevel.Warn, 'Before parse Heap: ' + Limits.getHeapSize() + '/' + Limits.getLimitHeapSize());
+        System.debug(LoggingLevel.Warn, 'Before parse CPU: ' + Limits.getCpuTime() + '/' + Limits.getLimitCpuTime());
+
+        string scriptName = 'csvToCustomObject';
+        Dataweave.Script dwscript = DataWeave.Script.createScript(scriptName);
+        DataWeave.Result dwresult = dwscript.execute(new Map<String, Object>{'records' => data.toString()});
+
+        System.debug(LoggingLevel.Warn, 'After parse Heap: ' + Limits.getHeapSize() + '/' + Limits.getLimitHeapSize());
+        System.debug(LoggingLevel.Warn, 'After parse CPU: ' + Limits.getCpuTime() + '/' + Limits.getLimitCpuTime());
+
+        List<CsvData> results = (List<CsvData>)dwresult.getValue();
+        Assert.areEqual(20000, results.size());
+
+        System.debug('Heap: ' + Limits.getHeapSize() + '/' + Limits.getLimitHeapSize());
+        
+        for(CsvData c : results) {
+            Assert.isNotNull(c.FirstName);
+            Assert.isNotNull(c.LastName);
+            Assert.isNotNull(c.Company);
+            Assert.isNotNull(c.Address);
+            
+            if(c.FirstName=='Donette' && c.LastName=='Foller') {
+                Assert.areEqual('34 Center St\r\n#42', c.Address);
+            }
+        }
+
+        System.debug('Heap: ' + Limits.getHeapSize() + '/' + Limits.getLimitHeapSize());
+    }
+
+    
 }
