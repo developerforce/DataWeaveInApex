@@ -7,6 +7,8 @@ For feedback and questsions, please see the [DataWeave in Apex](https://trailhea
 
 If you want to experiment with the possibilities of DataWeave scripts, there is the [interactive DataWeave playground](https://sfdc.co/dwlangfun).
 
+The [DataWeave extension for Visual Studio Code](https://developer.mulesoft.com/tutorials-and-howtos/dataweave/dataweave-extension-vscode-getting-started/) is available and syntax highlighting other additional tooling support.
+
 ## Basic Setup
 
 1. Create a scratch org with the "DataWeaveInApex" [scratch org feature](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_scratch_orgs_def_file_config_values.htm). See [/config/project-scratch-def.json](/config/project-scratch-def.json#L4) as an example
