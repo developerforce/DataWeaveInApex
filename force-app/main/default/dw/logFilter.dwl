@@ -2,4 +2,4 @@
 input payload application/json
 output application/json
 ---
-payload filter ((value) -> log(value).isSpecial == true) 
+payload filter ((value) -> log(value).isWinner == true) 
