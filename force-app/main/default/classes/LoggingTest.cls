@@ -3,7 +3,7 @@ public with sharing class LoggingTest {
     
     @IsTest
     public static void captureDataWeaveLogging() {
-        String jsonPayload = '[{\"name\": \"Hare\",\"isSpecial\": false},{\"name\": \"Turtles\",\"isSpecial\": true}]';
+        String jsonPayload = '[{\"name\": \"Hare\",\"isWinner\": false},{\"name\": \"Turtles\",\"isWinner\": true}]';
 
         string scriptName = 'logFilter';
         DataWeave.Script dwscript = DataWeave.Script.createScript(scriptName);
@@ -20,13 +20,13 @@ public with sharing class LoggingTest {
         /*[
         {
             "name": "Turtles",
-            "isSpecial": true
+            "isWinner": true
         }
         ]*/
 
         List<Object> jsonList = (List<Object>)JSON.deserializeUntyped(jsonResult);
         Map<String, Object> jsonMap = (Map<String, Object>) (jsonList[0]);
         Assert.areEqual('Turtles', jsonMap.get('name'));
-        Assert.isTrue(jsonMap.get('isSpecial'));
+        Assert.isTrue((Boolean)jsonMap.get('isWinner'));
     }
 }
