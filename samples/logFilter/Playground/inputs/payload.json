@@ -1,10 +1,10 @@
 [
     {
-        "name": "Apex",
-        "isSpecial": false
+        "name": "Rabbits",
+        "isWinner": false
     },
     {
         "name": "Turtles",
-        "isSpecial": true
+        "isWinner": true
     }
 ]
