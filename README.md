@@ -9,6 +9,8 @@ If you want to experiment with the possibilities of DataWeave scripts, there is 
 
 The [DataWeave extension for Visual Studio Code](https://developer.mulesoft.com/tutorials-and-howtos/dataweave/dataweave-extension-vscode-getting-started/) is available and syntax highlighting other additional tooling support.
 
+Slides for the Dreamforce '22 Presentation [Unleash Powerful Data Transforms in Apex with DataWeave](https://www.slideshare.net/DanielBallinger3/dreamforce-22-unleash-powerful-data-transforms-in-apex-with-dataweave)
+
 ## Basic Setup
 
 1. Create a scratch org with the "DataWeaveInApex" [scratch org feature](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_scratch_orgs_def_file_config_values.htm). See [/config/project-scratch-def.json](/config/project-scratch-def.json#L4) as an example
