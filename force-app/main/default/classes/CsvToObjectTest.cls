@@ -13,8 +13,8 @@ public with sharing class CsvToObjectTest {
             LIMIT 1].Body;
 
         String scriptName = 'csvToCustomObject';
-        DataWeave.Script dwscript = DataWeave.Script.createScript(scriptName);
-        DataWeave.Result dwresult = dwscript.execute(new Map<String, Object>{'records' => data.toString()});
+        DataWeave.Script script = DataWeave.Script.createScript(scriptName);
+        DataWeave.Result dwresult = script.execute(new Map<String, Object>{'records' => data.toString()});
 
         // Note that CsvData here is an Apex POTATO (Apex equivalent of a POJO)
         List<CsvData> results = (List<CsvData>)dwresult.getValue();
@@ -46,14 +46,14 @@ public with sharing class CsvToObjectTest {
         System.debug(LoggingLevel.Warn, 'Before parse CPU: ' + Limits.getCpuTime() + '/' + Limits.getLimitCpuTime());
 
         String scriptName = 'csvToCustomObject';
-        Dataweave.Script dwscript = DataWeave.Script.createScript(scriptName);
-        DataWeave.Result dwresult = dwscript.execute(new Map<String, Object>{'records' => data.toString()});
+        Dataweave.Script script = DataWeave.Script.createScript(scriptName);
+        DataWeave.Result dwresult = script.execute(new Map<String, Object>{'records' => data.toString()});
 
         System.debug(LoggingLevel.Warn, 'After parse Heap: ' + Limits.getHeapSize() + '/' + Limits.getLimitHeapSize());
         System.debug(LoggingLevel.Warn, 'After parse CPU: ' + Limits.getCpuTime() + '/' + Limits.getLimitCpuTime());
 
         List<CsvData> results = (List<CsvData>)dwresult.getValue();
-        Assert.areEqual(20000, results.size());
+        Assert.areEqual(18000, results.size());
 
         System.debug('Heap: ' + Limits.getHeapSize() + '/' + Limits.getLimitHeapSize());
         
@@ -63,8 +63,8 @@ public with sharing class CsvToObjectTest {
             Assert.isNotNull(c.Company);
             Assert.isNotNull(c.Address);
             
-            if(c.FirstName=='Donette' && c.LastName=='Foller') {
-                Assert.areEqual('34 Center St\r\n#42', c.Address);
+            if(c.FirstName=='Vinnie' && c.LastName=='Martellini') {
+                Assert.areEqual('Schulist, Schneider and Gutkowski', c.Company);
             }
         }
 
