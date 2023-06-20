@@ -1,7 +1,7 @@
 @IsTest
 public with sharing class CsvToObjectTest {
     
-    // Uses the ./src/dw/csvToCustomObject.dwl script to convert from a CSV static resource to objects
+    // Uses the /dw/csvToCustomObject.dwl script to convert from a CSV static resource to objects
     @IsTest
     public static void convertCsvToObjects() {
         // Load CSV data as a blob from static resource
@@ -12,8 +12,7 @@ public with sharing class CsvToObjectTest {
             Name = 'contacts' 
             LIMIT 1].Body;
 
-        String scriptName = 'csvToCustomObject';
-        DataWeave.Script script = DataWeave.Script.createScript(scriptName);
+        DataWeave.Script script = new DataWeaveScriptResource.csvToCustomObject();
         DataWeave.Result dwresult = script.execute(new Map<String, Object>{'records' => data.toString()});
 
         // Note that CsvData here is an Apex POTATO (Apex equivalent of a POJO)
@@ -31,7 +30,7 @@ public with sharing class CsvToObjectTest {
         }
     }
 
-    // Uses the ./src/dw/csvToCustomObject.dwl script to convert from a large CSV static resource to objects
+    // Uses the /dw/csvToCustomObject.dwl script to convert from a large CSV static resource to objects
     @IsTest
     public static void convertLargeCsvToObjects() {
         // Load CSV data as a blob from static resource
@@ -45,8 +44,7 @@ public with sharing class CsvToObjectTest {
         System.debug(LoggingLevel.Warn, 'Before parse Heap: ' + Limits.getHeapSize() + '/' + Limits.getLimitHeapSize());
         System.debug(LoggingLevel.Warn, 'Before parse CPU: ' + Limits.getCpuTime() + '/' + Limits.getLimitCpuTime());
 
-        String scriptName = 'csvToCustomObject';
-        Dataweave.Script script = DataWeave.Script.createScript(scriptName);
+        DataWeave.Script script = new DataWeaveScriptResource.csvToCustomObject();
         DataWeave.Result dwresult = script.execute(new Map<String, Object>{'records' => data.toString()});
 
         System.debug(LoggingLevel.Warn, 'After parse Heap: ' + Limits.getHeapSize() + '/' + Limits.getLimitHeapSize());

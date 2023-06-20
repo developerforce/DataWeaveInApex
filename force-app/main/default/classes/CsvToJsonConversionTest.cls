@@ -1,7 +1,7 @@
 @IsTest
 public with sharing class CsvToJsonConversionTest {
     
-    // Uses the ./src/dw/csvtojson.dwl script to convert from a CSV static resource to JSON
+    // Uses the /dw/csvToJson.dwl script to convert from a CSV static resource to JSON
     @IsTest
     public static void convertCsvToJsonContacts() {
         // Load CSV data as a blob from static resource
@@ -12,15 +12,12 @@ public with sharing class CsvToJsonConversionTest {
             Name = 'contacts' 
             LIMIT 1].Body;
 
-        String scriptName = 'csvtojson';
-        dataweave.Script dwscript = DataWeave.Script.createScript(scriptName);
-        String scriptNameReported = dwscript.toString();
-        System.assertEquals(scriptName, scriptNameReported);
+        DataWeave.Script script = new DataWeaveScriptResource.csvToJson();
+        String scriptNameReported = script.toString();
+        System.assertEquals('csvToJson', scriptNameReported);
 
-        DataWeave.Result result = dwscript.execute(new Map<String, Object>{'data' => data.toString()});
-
+        DataWeave.Result result = script.execute(new Map<String, Object>{'data' => data.toString()});
         String jsonResult = result.getValueAsString();
-        //system.debug('JSON output '+ jsonResult );
 
         List<Contact> contacts = (List<Contact>)JSON.deserialize(jsonResult, List<Contact>.class);
         System.assertEquals(51, contacts.size(), 'The static resource contacts.csv has 51 rows of data (less headers)');
@@ -35,18 +32,17 @@ public with sharing class CsvToJsonConversionTest {
         }
     }
 
-    // Uses the ./src/dw/csvSeparatorTojson.dwl script to convert from a CSV with ; delimiters to JSON
+    // Uses the /dw/csvSeparatorToJson.dwl script to convert from a CSV with ; delimiters to JSON
     @IsTest
     public static void csvSeparatorToJson() {
         // Note the use of the ; separator rather than ,
         Map<String, Object> args = new Map<String, Object>{ 'records' => '1;2\na;b' };
 
-        String scriptName = 'csvSeparatorTojson';
-        dataweave.Script dwscript = DataWeave.Script.createScript(scriptName);
-        String scriptNameReported = dwscript.toString();
-        Assert.areEqual(scriptName, scriptNameReported);
+        DataWeave.Script script = new DataWeaveScriptResource.csvSeparatorToJson();
+        String scriptNameReported = script.toString();
+        Assert.areEqual('csvSeparatorToJson', scriptNameReported);
 
-        DataWeave.Result result = dwscript.execute(args);
+        DataWeave.Result result = script.execute(args);
 
         String jsonResult = result.getValueAsString();
         system.debug('JSON output '+ jsonResult );
@@ -55,17 +51,15 @@ public with sharing class CsvToJsonConversionTest {
         Assert.isTrue(jsonResult.contains('"2": "b"'), 'Expected first record header and second value');
     }
 
-    // Uses the ./src/dw/csvToJsonBasic.dwl script to convert from a CSV to JSON with no extra conversion
+    // Uses the /dw/csvToJsonBasic.dwl script to convert from a CSV to JSON with no extra conversion
     @IsTest
     public static void convertCsvToJsonBasic() {
         String csvPayload = 'first_name,last_name,company,address\n' +
             'Abel,Maclead,"Rousseaux, Michael Esq","6649 N Blue Gum St,\n' +
             'New Orleans"';
 
-        String scriptName = 'csvToJsonBasic';
-        DataWeave.Script dwscript = DataWeave.Script.createScript(scriptName);
-
-        DataWeave.Result result = dwscript.execute(new Map<String, Object>{'payload' => csvPayload});
+        DataWeave.Script script = new DataWeaveScriptResource.csvToJsonBasic();
+        DataWeave.Result result = script.execute(new Map<String, Object>{'payload' => csvPayload});
 
         String jsonResult = result.getValueAsString();
         Assert.areNotEqual(0, jsonResult.trim().length(), 'Expected to have JSON output from DW script');
@@ -85,6 +79,5 @@ public with sharing class CsvToJsonConversionTest {
         Assert.areEqual('Maclead', jsonMap.get('last_name'));
         Assert.areEqual('Rousseaux, Michael Esq', jsonMap.get('company'));
         Assert.areEqual('6649 N Blue Gum St,\nNew Orleans', jsonMap.get('address'));
-        
     }
 }

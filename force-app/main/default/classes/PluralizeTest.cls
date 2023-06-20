@@ -1,14 +1,14 @@
 @IsTest
 public with sharing class PluralizeTest {
     
-    // Uses the ./src/dw/pluralize.dwl script to apply function: https://docs.mulesoft.com/dataweave/2.3/dw-strings-functions-pluralize
+    // Uses the /dw/pluralize.dwl script to apply function: https://docs.mulesoft.com/dataweave/2.3/dw-strings-functions-pluralize
     @IsTest
     public static void pluralize() {
         Map<String, Object> inputs = new Map<String, Object>();
         inputs.put('inputs', '[ "box", "cat", "deer", "die", "person", "cactus", "datum" ]');
         
-        dataweave.Script dwscript = DataWeave.Script.createScript('pluralize');
-        DataWeave.Result result = dwscript.execute(inputs);
+        DataWeave.Script script = new DataWeaveScriptResource.pluralize();
+        DataWeave.Result result = script.execute(inputs);
         String jsonOutput = result.getValueAsString();
         System.debug(jsonOutput);
         

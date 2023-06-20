@@ -48,9 +48,7 @@ public with sharing class DWJsonToSObjectsList {
         Map<String, Object> parameters = new Map<String, Object>();
         parameters.put('mapping', keyMap);
         parameters.put('incomingJson', incomingJson);
-        Dataweave.Script script = Dataweave.Script.createScript(
-            'json2sObjects'
-        );
+        DataWeave.Script script = new DataWeaveScriptResource.json2sObjects();
         DataWeave.Result result = script.execute(parameters);
         return result.getValueAsString();
     }

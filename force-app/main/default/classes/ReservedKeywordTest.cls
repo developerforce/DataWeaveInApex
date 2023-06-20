@@ -6,7 +6,7 @@ public with sharing class ReservedKeywordTest {
     public static void processReservedKeywords() {
         String jsonString = '[{"currency" : "ABC"}]';
 
-        DataWeave.Script script = DataWeave.Script.createScript('reservedKeywords');
+        DataWeave.Script script = new DataWeaveScriptResource.reservedKeywords();
         DataWeave.Result result = script.execute(new Map<String, Object>{ 'incomingJson' => jsonString });
         
         String output = result.getValueAsString();

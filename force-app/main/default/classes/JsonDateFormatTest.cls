@@ -16,8 +16,8 @@ public with sharing class JsonDateFormatTest {
         List<Contact> data = [SELECT FirstName, LastName, CreatedDate FROM Contact ORDER BY LastName ASC LIMIT 5];
         Assert.isFalse(data.isEmpty(), 'Contacts required for input data');
 
-        Dataweave.Script dwscript = DataWeave.Script.createScript('jsonDateFormat');
-        DataWeave.Result result = dwscript.execute(new Map<String, Object>{ 'records' => data });
+        DataWeave.Script script = new DataWeaveScriptResource.jsonDateFormat();
+        DataWeave.Result result = script.execute(new Map<String, Object>{ 'records' => data });
        
         // Note that DW uses Java 8 java.time.format, so uuuu is the year. vs. yyyy for Apex. 
         String expected = '{\n'+

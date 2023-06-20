@@ -16,9 +16,9 @@ public with sharing class ExcelOutputTest {
         List<Contact> data = [SELECT FirstName, LastName FROM Contact ORDER BY LastName ASC LIMIT 1];
         Assert.isFalse(data.isEmpty(), 'Contacts required for input data');
 
-        Dataweave.Script dwscript = DataWeave.Script.createScript('excelOutput');
+        DataWeave.Script script = new DataWeaveScriptResource.excelOutput();
         try {
-            DataWeave.Result result = dwscript.execute(new Map<String, Object>{ 'records' => data });
+            DataWeave.Result result = script.execute(new Map<String, Object>{ 'records' => data });
             
             String output = result.getValueAsString();
                 

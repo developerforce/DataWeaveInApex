@@ -3,12 +3,10 @@ public with sharing class LoggingTest {
     
     @IsTest
     public static void captureDataWeaveLogging() {
-        String jsonPayload = '[{\"name\": \"Hare\",\"isWinner\": false},{\"name\": \"Turtles\",\"isWinner\": true}]';
+        String jsonPayload = '[{"name": "Hare", "isWinner": false}, {"name": "Turtles", "isWinner": true}]';
 
-        String scriptName = 'logFilter';
-        DataWeave.Script dwscript = DataWeave.Script.createScript(scriptName);
-
-        DataWeave.Result result = dwscript.execute(new Map<String, Object>{'payload' => jsonPayload});
+        DataWeave.Script script = new DataWeaveScriptResource.logFilter();
+        DataWeave.Result result = script.execute(new Map<String, Object>{'payload' => jsonPayload});
 
         // While we can assert on the script outcome here, the key part is the logging that occurs 
         // to DATAWEAVE_USER_DEBUG

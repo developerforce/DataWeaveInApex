@@ -19,7 +19,7 @@ public with sharing class ObjectProcessingTest {
         List<Contact> data = [SELECT FirstName, LastName FROM Contact ORDER BY LastName ASC LIMIT 5];
         Assert.isFalse(data.isEmpty(), 'Contacts required for input data');
 
-        DataWeave.Script script = DataWeave.Script.createScript('objectProcessing');
+        DataWeave.Script script = new DataWeaveScriptResource.objectProcessing();
         DataWeave.Result result = script.execute(new Map<String, Object>{ 'records' => data });
         
         String output = result.getValueAsString();
@@ -73,8 +73,9 @@ public with sharing class ObjectProcessingTest {
     public static void sObjectsFromDataWeave() {
         // CSV data for Contacts
         String inputCsv = 'first_name,last_name,email\nCodey,"The Bear",codey@salesforce.com'; 
-        DataWeave.Script dwscript = DataWeave.Script.createScript('csvToContacts');
-        DataWeave.Result dwresult = dwscript.execute(new Map<String, Object>{'records' => inputCsv});
+
+        DataWeave.Script script = new DataWeaveScriptResource.csvToContacts();
+        DataWeave.Result dwresult = script.execute(new Map<String, Object>{'records' => inputCsv});
         List<Contact> results = (List<Contact>)dwresult.getValue();
 
         Assert.areEqual(1, results.size());
