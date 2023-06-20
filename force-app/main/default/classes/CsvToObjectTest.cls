@@ -12,7 +12,7 @@ public with sharing class CsvToObjectTest {
             Name = 'contacts' 
             LIMIT 1].Body;
 
-        string scriptName = 'csvToCustomObject';
+        String scriptName = 'csvToCustomObject';
         DataWeave.Script dwscript = DataWeave.Script.createScript(scriptName);
         DataWeave.Result dwresult = dwscript.execute(new Map<String, Object>{'records' => data.toString()});
 
@@ -45,7 +45,7 @@ public with sharing class CsvToObjectTest {
         System.debug(LoggingLevel.Warn, 'Before parse Heap: ' + Limits.getHeapSize() + '/' + Limits.getLimitHeapSize());
         System.debug(LoggingLevel.Warn, 'Before parse CPU: ' + Limits.getCpuTime() + '/' + Limits.getLimitCpuTime());
 
-        string scriptName = 'csvToCustomObject';
+        String scriptName = 'csvToCustomObject';
         Dataweave.Script dwscript = DataWeave.Script.createScript(scriptName);
         DataWeave.Result dwresult = dwscript.execute(new Map<String, Object>{'records' => data.toString()});
 

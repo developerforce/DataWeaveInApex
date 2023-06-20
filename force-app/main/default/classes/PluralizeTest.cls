@@ -9,17 +9,17 @@ public with sharing class PluralizeTest {
         
         dataweave.Script dwscript = DataWeave.Script.createScript('pluralize');
         DataWeave.Result result = dwscript.execute(inputs);
-        string jsonOutput = result.getValueAsString();
+        String jsonOutput = result.getValueAsString();
         System.debug(jsonOutput);
         
-        Map<string, string> pluralMappings = new Map<string, string>();
+        Map<String, String> pluralMappings = new Map<String, String>();
 
         // Extracting the results could use some refinement 
         List<object> mappings = (List<object>) JSON.deserializeUntyped(jsonOutput);
         for(Object pluralMap : mappings) {
             Map<String, Object> pm = (Map<String, Object>)pluralMap;
-            for(string key : pm.keySet()) {
-                pluralMappings.put(key, (string)pm.get(key));
+            for(String key : pm.keySet()) {
+                pluralMappings.put(key, (String)pm.get(key));
             }
         }
 

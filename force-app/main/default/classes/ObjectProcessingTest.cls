@@ -22,7 +22,7 @@ public with sharing class ObjectProcessingTest {
         DataWeave.Script script = DataWeave.Script.createScript('objectProcessing');
         DataWeave.Result result = script.execute(new Map<String, Object>{ 'records' => data });
         
-        string output = result.getValueAsString();
+        String output = result.getValueAsString();
                
         System.debug(output);
 
@@ -50,7 +50,7 @@ public with sharing class ObjectProcessingTest {
         Map<String, List<UserData>> users = new Map<String, List<UserData>>();
         users.put('users', ud);
 
-        string output = JSON.serializePretty(users);
+        String output = JSON.serializePretty(users);
 
         System.debug(output);
 
@@ -64,8 +64,8 @@ public with sharing class ObjectProcessingTest {
     }
 
     class UserData {
-        public string firstName;
-        public string lastName;
+        public String firstName;
+        public String lastName;
     }
 
     // Uses the /dw/csvToContacts.dwl script to convert the csv data to Contact sObjects

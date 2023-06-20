@@ -20,7 +20,7 @@ public with sharing class JsonDateFormatTest {
         DataWeave.Result result = dwscript.execute(new Map<String, Object>{ 'records' => data });
        
         // Note that DW uses Java 8 java.time.format, so uuuu is the year. vs. yyyy for Apex. 
-        string expected = '{\n'+
+        String expected = '{\n'+
         '  "users": [\n'+                                                                                                                      
         '    {\n'+
         '      "firstName": "John",\n'+

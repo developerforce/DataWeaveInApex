@@ -14,7 +14,7 @@ public with sharing class MultipleInputsTest {
         DataWeave.Script dwscript = DataWeave.Script.createScript('multipleInputs');
         DataWeave.Result result = dwscript.execute(inputs);
 
-        string output = result.getValueAsString();
+        String output = result.getValueAsString();
                
         system.debug('xml output'+ output);
 
