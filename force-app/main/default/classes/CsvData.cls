@@ -1,6 +1,6 @@
 public with sharing class CsvData {
-    public string FirstName;
-    public string LastName;
-    public string Company;
-    public string Address {get; set;}
+    public String FirstName;
+    public String LastName;
+    public String Company;
+    public String Address {get; set;}
 }

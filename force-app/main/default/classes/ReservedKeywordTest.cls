@@ -4,12 +4,12 @@ public with sharing class ReservedKeywordTest {
     // Uses the /dw/reservedKeywords.dwl script to handle reserved Apex keywords
     @IsTest
     public static void processReservedKeywords() {
-        string jsonString = '[{"currency" : "ABC"}]';
+        String jsonString = '[{"currency" : "ABC"}]';
 
         DataWeave.Script script = DataWeave.Script.createScript('reservedKeywords');
         DataWeave.Result result = script.execute(new Map<String, Object>{ 'incomingJson' => jsonString });
         
-        string output = result.getValueAsString();
+        String output = result.getValueAsString();
                
         System.debug(output);
 
@@ -21,7 +21,7 @@ public with sharing class ReservedKeywordTest {
     }
 
     public class JSONResult {
-        public string currency_x;
+        public String currency_x;
     }
 
 }

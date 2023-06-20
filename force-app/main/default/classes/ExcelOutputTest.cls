@@ -20,7 +20,7 @@ public with sharing class ExcelOutputTest {
         try {
             DataWeave.Result result = dwscript.execute(new Map<String, Object>{ 'records' => data });
             
-            string output = result.getValueAsString();
+            String output = result.getValueAsString();
                 
             Assert.fail('application/xlsx is not currently an expected output type');
         } catch (System.DataWeaveScriptException ex) {

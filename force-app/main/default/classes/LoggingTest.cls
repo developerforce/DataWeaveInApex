@@ -5,7 +5,7 @@ public with sharing class LoggingTest {
     public static void captureDataWeaveLogging() {
         String jsonPayload = '[{\"name\": \"Hare\",\"isWinner\": false},{\"name\": \"Turtles\",\"isWinner\": true}]';
 
-        string scriptName = 'logFilter';
+        String scriptName = 'logFilter';
         DataWeave.Script dwscript = DataWeave.Script.createScript(scriptName);
 
         DataWeave.Result result = dwscript.execute(new Map<String, Object>{'payload' => jsonPayload});
@@ -14,7 +14,7 @@ public with sharing class LoggingTest {
         // to DATAWEAVE_USER_DEBUG
         // You will need to run the test with logging enabled or as anonymous Apex to see the output
 
-        string jsonResult = result.getValueAsString();
+        String jsonResult = result.getValueAsString();
         System.debug(jsonResult);
 
         /*[

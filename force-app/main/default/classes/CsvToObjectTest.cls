@@ -5,14 +5,14 @@ public with sharing class CsvToObjectTest {
     @IsTest
     public static void convertCsvToObjects() {
         // Load CSV data as a blob from static resource
-        Blob data = [Select Body 
+        Blob data = [SELECT Body 
             FROM 
             StaticResource 
             WHERE 
             Name = 'contacts' 
             LIMIT 1].Body;
 
-        string scriptName = 'csvToCustomObject';
+        String scriptName = 'csvToCustomObject';
         DataWeave.Script dwscript = DataWeave.Script.createScript(scriptName);
         DataWeave.Result dwresult = dwscript.execute(new Map<String, Object>{'records' => data.toString()});
 
@@ -26,7 +26,7 @@ public with sharing class CsvToObjectTest {
             Assert.isNotNull(c.Address);
             
             if(c.FirstName=='Donette' && c.LastName=='Foller') {
-                Assert.areEqual('34 Center St\r\n#42', c.Address);
+                Assert.areEqual('34 Center St\n#42', c.Address);
             }
         }
     }
@@ -35,7 +35,7 @@ public with sharing class CsvToObjectTest {
     @IsTest
     public static void convertLargeCsvToObjects() {
         // Load CSV data as a blob from static resource
-        Blob data = [Select Body 
+        Blob data = [SELECT Body 
             FROM 
             StaticResource 
             WHERE 
@@ -45,7 +45,7 @@ public with sharing class CsvToObjectTest {
         System.debug(LoggingLevel.Warn, 'Before parse Heap: ' + Limits.getHeapSize() + '/' + Limits.getLimitHeapSize());
         System.debug(LoggingLevel.Warn, 'Before parse CPU: ' + Limits.getCpuTime() + '/' + Limits.getLimitCpuTime());
 
-        string scriptName = 'csvToCustomObject';
+        String scriptName = 'csvToCustomObject';
         Dataweave.Script dwscript = DataWeave.Script.createScript(scriptName);
         DataWeave.Result dwresult = dwscript.execute(new Map<String, Object>{'records' => data.toString()});
 
@@ -70,6 +70,4 @@ public with sharing class CsvToObjectTest {
 
         System.debug('Heap: ' + Limits.getHeapSize() + '/' + Limits.getLimitHeapSize());
     }
-
-    
 }

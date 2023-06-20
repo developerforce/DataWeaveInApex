@@ -5,21 +5,21 @@ public with sharing class CsvToJsonConversionTest {
     @IsTest
     public static void convertCsvToJsonContacts() {
         // Load CSV data as a blob from static resource
-        Blob data = [Select Body 
+        Blob data = [SELECT Body 
             FROM 
             StaticResource 
             WHERE 
             Name = 'contacts' 
             LIMIT 1].Body;
 
-        string scriptName = 'csvtojson';
+        String scriptName = 'csvtojson';
         dataweave.Script dwscript = DataWeave.Script.createScript(scriptName);
-        string scriptNameReported = dwscript.toString();
+        String scriptNameReported = dwscript.toString();
         System.assertEquals(scriptName, scriptNameReported);
 
         DataWeave.Result result = dwscript.execute(new Map<String, Object>{'data' => data.toString()});
 
-        string jsonResult = result.getValueAsString();
+        String jsonResult = result.getValueAsString();
         //system.debug('JSON output '+ jsonResult );
 
         List<Contact> contacts = (List<Contact>)JSON.deserialize(jsonResult, List<Contact>.class);
@@ -30,7 +30,7 @@ public with sharing class CsvToJsonConversionTest {
             System.assertNotEquals(null, c.MailingStreet);
             
             if(c.FirstName=='Donette' && c.LastName=='Foller') {
-                System.assertEquals('34 Center St\r\n#42', c.MailingStreet);
+                System.assertEquals('34 Center St\n#42', c.MailingStreet);
             }
         }
     }
@@ -41,14 +41,14 @@ public with sharing class CsvToJsonConversionTest {
         // Note the use of the ; separator rather than ,
         Map<String, Object> args = new Map<String, Object>{ 'records' => '1;2\na;b' };
 
-        string scriptName = 'csvSeparatorTojson';
+        String scriptName = 'csvSeparatorTojson';
         dataweave.Script dwscript = DataWeave.Script.createScript(scriptName);
-        string scriptNameReported = dwscript.toString();
+        String scriptNameReported = dwscript.toString();
         Assert.areEqual(scriptName, scriptNameReported);
 
         DataWeave.Result result = dwscript.execute(args);
 
-        string jsonResult = result.getValueAsString();
+        String jsonResult = result.getValueAsString();
         system.debug('JSON output '+ jsonResult );
 
         Assert.isTrue(jsonResult.contains('"1": "a",'), 'Expected first record header and value.');
@@ -58,16 +58,16 @@ public with sharing class CsvToJsonConversionTest {
     // Uses the ./src/dw/csvToJsonBasic.dwl script to convert from a CSV to JSON with no extra conversion
     @IsTest
     public static void convertCsvToJsonBasic() {
-        string csvPayload = 'first_name,last_name,company,address\n' +
+        String csvPayload = 'first_name,last_name,company,address\n' +
             'Abel,Maclead,"Rousseaux, Michael Esq","6649 N Blue Gum St,\n' +
             'New Orleans"';
 
-        string scriptName = 'csvToJsonBasic';
+        String scriptName = 'csvToJsonBasic';
         DataWeave.Script dwscript = DataWeave.Script.createScript(scriptName);
 
         DataWeave.Result result = dwscript.execute(new Map<String, Object>{'payload' => csvPayload});
 
-        string jsonResult = result.getValueAsString();
+        String jsonResult = result.getValueAsString();
         Assert.areNotEqual(0, jsonResult.trim().length(), 'Expected to have JSON output from DW script');
         System.debug(jsonResult);
         /*[
