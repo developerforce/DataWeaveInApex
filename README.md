@@ -1,7 +1,7 @@
 # DataWeave In Apex
 Examples for working with DataWeave scripts from Apex.
 
-This functionality is [currently in Dev Preview](https://help.salesforce.com/s/articleView?id=release-notes.rn_apex_DataWeaveInApex_DevPreview.htm&type=5&release=240) in Winter '23. It can be selectively enabled in scratch orgs.
+This functionality is [currently in Beta](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/DataWeaveInApex.htm) in Summer '23. It can be selectively enabled in scratch orgs.
 
 For feedback and questsions, please see the [DataWeave in Apex](https://trailhead.salesforce.com/trailblazer-community/groups/0F94S000000kGtKSAU) Trailblazer community group.
 
