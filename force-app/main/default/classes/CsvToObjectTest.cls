@@ -5,7 +5,7 @@ public with sharing class CsvToObjectTest {
     @IsTest
     public static void convertCsvToObjects() {
         // Load CSV data as a blob from static resource
-        Blob data = [Select Body 
+        Blob data = [SELECT Body 
             FROM 
             StaticResource 
             WHERE 
@@ -35,7 +35,7 @@ public with sharing class CsvToObjectTest {
     @IsTest
     public static void convertLargeCsvToObjects() {
         // Load CSV data as a blob from static resource
-        Blob data = [Select Body 
+        Blob data = [SELECT Body 
             FROM 
             StaticResource 
             WHERE 

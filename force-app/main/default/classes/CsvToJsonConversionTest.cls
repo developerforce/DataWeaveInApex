@@ -5,7 +5,7 @@ public with sharing class CsvToJsonConversionTest {
     @IsTest
     public static void convertCsvToJsonContacts() {
         // Load CSV data as a blob from static resource
-        Blob data = [Select Body 
+        Blob data = [SELECT Body 
             FROM 
             StaticResource 
             WHERE 
