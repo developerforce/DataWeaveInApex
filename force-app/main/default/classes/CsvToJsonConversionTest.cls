@@ -30,7 +30,7 @@ public with sharing class CsvToJsonConversionTest {
             System.assertNotEquals(null, c.MailingStreet);
             
             if(c.FirstName=='Donette' && c.LastName=='Foller') {
-                System.assertEquals('34 Center St\r\n#42', c.MailingStreet);
+                System.assertEquals('34 Center St\n#42', c.MailingStreet);
             }
         }
     }

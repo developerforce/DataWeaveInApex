@@ -26,7 +26,7 @@ public with sharing class CsvToObjectTest {
             Assert.isNotNull(c.Address);
             
             if(c.FirstName=='Donette' && c.LastName=='Foller') {
-                Assert.areEqual('34 Center St\r\n#42', c.Address);
+                Assert.areEqual('34 Center St\n#42', c.Address);
             }
         }
     }
@@ -70,6 +70,4 @@ public with sharing class CsvToObjectTest {
 
         System.debug('Heap: ' + Limits.getHeapSize() + '/' + Limits.getLimitHeapSize());
     }
-
-    
 }
