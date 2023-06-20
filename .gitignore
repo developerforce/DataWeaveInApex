@@ -26,6 +26,9 @@ node_modules/
 # Eslint cache
 .eslintcache
 
+# PMD cache
+.pmdCache
+
 # MacOS system files
 .DS_Store
 
@@ -34,6 +37,10 @@ Thumbs.db
 ehthumbs.db
 [Dd]esktop.ini
 $RECYCLE.BIN/
+
+# VS Code project settings
+.vscode/*
+!.vscode/extensions.json
 
 # Local environment variables
 .env
