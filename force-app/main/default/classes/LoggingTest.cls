@@ -23,8 +23,9 @@ public with sharing class LoggingTest {
         ]*/
 
         List<Object> jsonList = (List<Object>)JSON.deserializeUntyped(jsonResult);
-        Map<String, Object> jsonMap = (Map<String, Object>) (jsonList[0]);
+        Assert.areEqual(1, jsonList.size());
+        Map<String, Object> jsonMap = (Map<String, Object>) jsonList[0];
         Assert.areEqual('Turtles', jsonMap.get('name'));
-        Assert.isTrue((Boolean)jsonMap.get('isWinner'));
+        Assert.isTrue((Boolean) jsonMap.get('isWinner'));
     }
 }

@@ -9,7 +9,7 @@ public with sharing class ExceptionHandlingTest {
             DataWeave.Result result = script.execute(new Map<String, Object>());
             Assert.fail('Exception expected');
         } catch (Exception ex) {
-            Assert.isInstanceOfType(ex, DataWeaveScriptException.class, 'Exceptionn of type DataWeaveScriptException expected');
+            Assert.isInstanceOfType(ex, DataWeaveScriptException.class, 'Exception of type DataWeaveScriptException expected');
             System.debug(LoggingLevel.Error, ex);
             Assert.isTrue(ex.getMessage().startsWith('Division by zero'));
             System.debug('Message:' + ex.getMessage());
