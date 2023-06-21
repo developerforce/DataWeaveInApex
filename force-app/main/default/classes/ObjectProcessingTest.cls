@@ -1,26 +1,23 @@
 @IsTest
 public with sharing class ObjectProcessingTest {
 
-    @TestSetup
-    static void init() {
-        // Test contacts
-        List<Contact> contacts = new List<Contact>();
-        contacts.add(new Contact(FirstName='John', LastName='Doe'));
-        contacts.add(new Contact(FirstName='Jane', LastName='Doe'));
-        contacts.add(new Contact(FirstName='John', LastName='Foe'));
-        contacts.add(new Contact(FirstName='Jane', LastName='Foe'));
-        contacts.add(new Contact(FirstName='John', LastName='Goe'));
-        insert contacts;
+    static List<Contact> getMockContacts() {
+        return new List<Contact>{
+            new Contact(FirstName='John', LastName='Doe'),
+            new Contact(FirstName='Jane', LastName='Doe'),
+            new Contact(FirstName='John', LastName='Foe'),
+            new Contact(FirstName='Jane', LastName='Foe'),
+            new Contact(FirstName='John', LastName='Goe')
+        };
     }
 
     // Uses the /dw/objectProcessing.dwl script to log a message
     @IsTest
     public static void passSObjectsToDataWeave() {
-        List<Contact> data = [SELECT FirstName, LastName FROM Contact ORDER BY LastName ASC LIMIT 5];
-        Assert.isFalse(data.isEmpty(), 'Contacts required for input data');
+        List<Contact> contacts = getMockContacts();
 
         DataWeave.Script script = new DataWeaveScriptResource.objectProcessing();
-        DataWeave.Result result = script.execute(new Map<String, Object>{ 'records' => data });
+        DataWeave.Result result = script.execute(new Map<String, Object>{ 'records' => contacts });
         
         String output = result.getValueAsString();
                
@@ -37,11 +34,11 @@ public with sharing class ObjectProcessingTest {
 
     @IsTest
     public static void jsonSerializeForComparrison() {
-        List<Contact> data = [SELECT FirstName, LastName FROM Contact ORDER BY LastName ASC LIMIT 5];
+        List<Contact> contacts = getMockContacts();
 
         List<UserData> ud = new List<UserData>();
 
-        for(Contact c : data) {
+        for(Contact c : contacts) {
             UserData u = new UserData();
             u.firstName = c.FirstName;
             u.lastName = c.lastName;
@@ -76,13 +73,13 @@ public with sharing class ObjectProcessingTest {
 
         DataWeave.Script script = new DataWeaveScriptResource.csvToContacts();
         DataWeave.Result dwresult = script.execute(new Map<String, Object>{'records' => inputCsv});
-        List<Contact> results = (List<Contact>)dwresult.getValue();
+        List<Contact> results = (List<Contact>) dwresult.getValue();
 
         Assert.areEqual(1, results.size());
         Contact codeyContact = results[0];
-        Assert.areEqual('Codey',codeyContact.FirstName);
-        Assert.areEqual('The Bear',codeyContact.LastName);
-        Assert.areEqual('codey@salesforce.com',codeyContact.Email);
+        Assert.areEqual('Codey', codeyContact.FirstName);
+        Assert.areEqual('The Bear', codeyContact.LastName);
+        Assert.areEqual('codey@salesforce.com', codeyContact.Email);
     }
 
 }

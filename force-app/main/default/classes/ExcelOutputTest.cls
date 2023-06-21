@@ -11,19 +11,18 @@ public with sharing class ExcelOutputTest {
 
     // Uses the /dw/excelOutput.dwl script to log a message
     @IsTest
-    public static void runtimeDataWeaveError() {
-             
-        List<Contact> data = [SELECT FirstName, LastName FROM Contact ORDER BY LastName ASC LIMIT 1];
-        Assert.isFalse(data.isEmpty(), 'Contacts required for input data');
+    public static void runtimeDataWeaveError() {    
+        List<Contact> records = new List<Contact>{
+            new Contact(FirstName='John', LastName='Doe')
+        };
 
         DataWeave.Script script = new DataWeaveScriptResource.excelOutput();
         try {
-            DataWeave.Result result = script.execute(new Map<String, Object>{ 'records' => data });
+            script.execute(new Map<String, Object>{ 'records' => records });
             
-            String output = result.getValueAsString();
-                
-            Assert.fail('application/xlsx is not currently an expected output type');
-        } catch (System.DataWeaveScriptException ex) {
+            Assert.fail('Exception expected: application/xlsx is not currently an expected output type');
+        } catch (Exception ex) {
+            Assert.isInstanceOfType(ex, DataWeaveScriptException.class, 'Exception of type DataWeaveScriptException expected');
             Assert.isTrue(ex.getMessage().contains('Unknown content type `application/xlsx`'));
         }
     }
