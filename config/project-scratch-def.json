@@ -1,7 +1,7 @@
 {
   "orgName": "DataWeaveInApex Org",
   "edition": "Developer",
-  "features": ["EnableSetPasswordInApi", "DataWeaveInApex"],
+  "features": ["EnableSetPasswordInApi"],
   "settings": {
     "lightningExperienceSettings": {
       "enableS1DesktopEnabled": true

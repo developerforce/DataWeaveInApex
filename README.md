@@ -1,7 +1,7 @@
 # DataWeave In Apex
 Examples for working with DataWeave scripts from Apex.
 
-This functionality is [currently in Beta](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/DataWeaveInApex.htm) in Summer '23. It can be selectively enabled in scratch orgs.
+This functionality is [GA](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/DataWeaveInApex.htm) in Winter `24.
 
 For feedback and questsions, please see the [DataWeave in Apex](https://trailhead.salesforce.com/trailblazer-community/groups/0F94S000000kGtKSAU) Trailblazer community group.
 
@@ -13,9 +13,8 @@ Slides for the Dreamforce '22 Presentation [Unleash Powerful Data Transforms in 
 
 ## Basic Setup
 
-1. Create a scratch org with the "DataWeaveInApex" [scratch org feature](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_scratch_orgs_def_file_config_values.htm). See [/config/project-scratch-def.json](/config/project-scratch-def.json#L4) as an example
+1. Create a scratch org.
 2. Push the source to the scratch org - requires SFDX CLI [7.151.9+](https://github.com/forcedotcom/cli/blob/main/releasenotes/sfdx/README.md#71511-may-19-2022)
-
 
 ## Examples
 
