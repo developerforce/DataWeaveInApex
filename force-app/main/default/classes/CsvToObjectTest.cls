@@ -25,7 +25,8 @@ public with sharing class CsvToObjectTest {
             Assert.isNotNull(c.Address);
             
             if(c.FirstName=='Donette' && c.LastName=='Foller') {
-                Assert.areEqual('34 Center St\n#42', c.Address);
+                // The line ending characters of the OS that uploaded the StaticResource can affect the encoding
+                Assert.isTrue(c.Address == '34 Center St\n#42' || c.Address == '34 Center St\r\n#42');
             }
         }
     }
