@@ -82,4 +82,21 @@ public with sharing class ObjectProcessingTest {
         Assert.areEqual('codey@salesforce.com', codeyContact.Email);
     }
 
+    // Uses the /dw/jsonToContacts.dwl script to convert the csv data to Contact sObjects
+    // See DWJsonToSObjectsList for a more dynamic mapping
+    @IsTest
+    public static void sObjectsFromJson(){
+        // JSON data for Contacts
+        string inputJson = '[{"id":1,"first_name":"Codey","last_name":"The Bear","email":"codey@salesforce.com"}]';
+        DataWeave.Script script = new DataWeaveScriptResource.jsonToContacts();
+        DataWeave.Result dwresult = script.execute(new Map<String, Object>{'records' => inputJson});
+        List<Contact> results = (List<Contact>) dwresult.getValue();
+
+        Assert.areEqual(1, results.size());
+        Contact codeyContact = results[0];
+        Assert.areEqual('Codey', codeyContact.FirstName);
+        Assert.areEqual('The Bear', codeyContact.LastName);
+        Assert.areEqual('codey@salesforce.com', codeyContact.Email);
+    }
+
 }
