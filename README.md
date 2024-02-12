@@ -1,3 +1,6 @@
+> [!WARNING]
+> The content of this repository has been merged into the [Apex Recipes sample app](https://github.com/trailheadapps/apex-recipes).
+
 # DataWeave In Apex
 Examples for working with DataWeave scripts from Apex.
 
